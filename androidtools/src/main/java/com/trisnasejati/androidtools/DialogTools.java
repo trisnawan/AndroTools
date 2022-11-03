@@ -22,7 +22,7 @@ public class DialogTools {
     }
 
     public static void snackBar(View view, String message){
-        Snackbar.make(view, message, BaseTransientBottomBar.LENGTH_SHORT).show();
+        if(view!=null) Snackbar.make(view, message, BaseTransientBottomBar.LENGTH_SHORT).show();
     }
 
     public static void snackBar(View view, Throwable throwable, boolean isIndent){
@@ -31,9 +31,9 @@ public class DialogTools {
 
     public static void snackBar(View view, String message, boolean isIndent){
         if (isIndent) {
-            Snackbar.make(view, message, BaseTransientBottomBar.LENGTH_LONG).show();
+            if(view!=null) Snackbar.make(view, message, BaseTransientBottomBar.LENGTH_LONG).show();
         }else{
-            Snackbar.make(view, message, BaseTransientBottomBar.LENGTH_INDEFINITE).show();
+            if(view!=null) Snackbar.make(view, message, BaseTransientBottomBar.LENGTH_INDEFINITE).show();
         }
     }
 
@@ -42,10 +42,12 @@ public class DialogTools {
     }
 
     public static void alert(Activity activity, String title, String message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setMessage(message).setTitle(title);
-        AlertDialog dialog = builder.create();
-        dialog.show();
+        if (activity!=null && title!=null && message!=null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            builder.setMessage(message).setTitle(title);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
     }
 
     public static void toast(Context context, Throwable throwable){
@@ -53,7 +55,7 @@ public class DialogTools {
     }
 
     public static void toast(Context context, String message){
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        if (context!=null) Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
     public static String throwableHelper(Throwable throwable){
