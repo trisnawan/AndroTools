@@ -22,6 +22,39 @@ public class TimeTools {
       return dateFormat.format(new Date(timestamp));
    }
 
+   public static String getTimeFull(String dateTime, String format){
+      @SuppressLint("SimpleDateFormat")
+      SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+      try {
+         dateFormat1.parse(dateTime);
+         Date date = dateFormat1.parse(dateTime);
+
+         if (date!=null) {
+            @SuppressLint("SimpleDateFormat")
+            SimpleDateFormat dateFormat2 = new SimpleDateFormat(format);
+            return dateFormat2.format(date);
+         }
+      } catch (Exception e){
+         e.printStackTrace();
+      }
+      return null;
+   }
+
+   public static long getTimeLong(String dateTime){
+      @SuppressLint("SimpleDateFormat")
+      SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+      try {
+         dateFormat1.parse(dateTime);
+         Date date = dateFormat1.parse(dateTime);
+         if (date!=null){
+            return date.getTime();
+         }
+      } catch (Exception e){
+         e.printStackTrace();
+      }
+      return 0;
+   }
+
    public static String formatTimeFull(long time1, long time2){
       @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm, dd MMMM yyyy");
       return dateFormat.format(time1) + " s/d " +dateFormat.format(time2);
